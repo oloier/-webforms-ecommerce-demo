@@ -1,0 +1,86 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - OmniEmulators</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body>
+    <form runat="server" method="post" enctype="multipart/form-data" id="form">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+
+        <div class="container">
+
+            <nav class="navbar navbar-inverse bg-inverse mt-2 mb-2 p-0">
+
+                <%--                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>--%>
+                <%--<div class="collapse navbar-collapse " id="navbarNavDropdown">--%>
+                <div class="navbar-nav">
+                    <a href="/" class="nav-item nav-link navbar-brand">
+                        <img src="/logo.png" height="60" alt="Omni Emulators Logo" />
+                    </a>
+                    <a class="nav-item nav-link" href="/About">About</a>
+                    <a class="nav-item nav-link" href="/">Products</a>
+                    <a class="nav-item nav-link" href="/Account">Login</a>
+                    <a class="nav-item nav-link" href="/Contact">Contact</a>
+                    <a class="nav-item nav-link" href="/Cart">Cart <asp:Literal runat="server" ID="CartCount" /></a>
+                    <a class="nav-item nav-link" href="/Admin" runat="server" id="AdminLink" visible="false">Admin Panel</a>
+                    <div class="nav-item nav-link" runat="server" ID="logoutButt" ><asp:LinkButton OnClick="LogOut" Text="Logout" runat="server" ID="logoutButton" CssClass="btn btn-primary"></asp:LinkButton></div> 
+
+                </div>
+                <%--</div>--%>
+            </nav>
+
+            <div class="container body-content">
+                <div class="alert alert-warning" runat="server" visible="false" id="report"></div>
+
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+
+                <hr />
+                <footer>
+                    <div class="m-3 text-left">
+                        <span runat="server" id="loggedInAs" visible="false">Logged in as "<%=Customer.custusername %>"</span>
+                        <span class="float-right">&copy; <%: DateTime.Now.Year %> - OmniEmulators</span>
+                    </div>
+                    <div>
+                    </div>
+                </footer>
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>
